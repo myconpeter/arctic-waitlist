@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>ARCTIC - wait-list</title>
+		<link
+			href="/src/output.css"
+			rel="stylesheet" />
+	</head>
+	<body>
+		<section class="h-screen">
+			<div class="flex text-white items-center justify-center mt-10">
+				<img
+					src="/image/art.png"
+					alt="" />
+				<p class="text-white font-bold text-xl -ml-5">Admin</p>
+			</div>
+
+		
+
+            <div class=" flex items-center justify-center mt-10">
+
+				
+                <form class="space-y-4 flex flex-col" method="post" action="/admin">
+                    <div class="relative flex justify-center items-center flex-col">
+
+					
+
+						<div class="absolute top-4 md:w-[200%] w-[100%] h-[1px] bg-gradient-to-r from-blue-300 via-transparent to-blue-300"></div>
+
+                      <label for="email" class="block text-xs  bg-gradient-to-r from-blue-900 via-blue-400 to-white px-4 py-2 rounded-md z-10">PIN</label>
+					  <div class="p-[1px] rounded-full bg-gradient-to-b from-blue-900 via-white to-blue-300 inline-block">
+						<input type="number" id="pin" name="pin" placeholder="Enter four digit pin" 
+							class="w-80 p-2 rounded-full bg-black text-white text-center focus:outline-none" />
+					</div>
+					
+                    </div>
+                  
+					<%- include ('./partials/messages') %>
+
+                    <button type="submit" 
+                            class="bg-gradient-to-r from-blue-900 via-blue-400 to-white text-black text-sm py-3 px-4 rounded mt-8 hover:bg-blue-800 transition">
+                      Admin-Login
+                    </button>
+            </div>
+		</section>
+
+		<script src="/src/bg.js"></script>
+	</body>
+</html>
