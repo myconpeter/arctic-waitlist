@@ -4,155 +4,49 @@
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1.0" />
-
 		<title>ADMIN</title>
-
-		<style>
-			table {
-				border: 1px solid #ccc;
-				border-collapse: collapse;
-				margin: 0;
-				padding: 0;
-				width: 100%;
-				table-layout: fixed;
-			}
-
-			table caption {
-				font-size: 1.5em;
-				margin: 0.5em 0 0.75em;
-			}
-
-			table tr {
-				background-color: #f8f8f8;
-				border: 1px solid #ddd;
-				padding: 0.35em;
-			}
-
-			table th,
-			table td {
-				padding: 0.625em;
-				text-align: center;
-			}
-
-			table th {
-				font-size: 0.85em;
-				letter-spacing: 0.1em;
-				text-transform: uppercase;
-			}
-
-			@media screen and (max-width: 600px) {
-				table {
-					border: 0;
-				}
-
-				table caption {
-					font-size: 1.3em;
-				}
-
-				table thead {
-					border: none;
-					clip: rect(0 0 0 0);
-					height: 1px;
-					margin: -1px;
-					overflow: auto;
-					padding: 0;
-					position: absolute;
-					width: 1px;
-				}
-
-				table tr {
-					border-bottom: 3px solid #ddd;
-					display: block;
-					margin-bottom: 0.625em;
-				}
-
-				table td {
-					border-bottom: 1px solid #ddd;
-					display: block;
-					font-size: 0.8em;
-					text-align: right;
-				}
-
-				table td::before {
-					/*
-    * aria-label has no advantage, it won't be read inside a table
-    content: attr(aria-label);
-    */
-					content: attr(data-label);
-					float: left;
-					font-weight: bold;
-					text-transform: uppercase;
-				}
-
-				table td:last-child {
-					border-bottom: 0;
-				}
-			}
-
-			/* general styling */
-			body {
-				font-family: 'Open Sans', sans-serif;
-				line-height: 1.25;
-			}
-		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
 	</head>
-	<body>
-		<div class="table-wrapper">
-			<table>
-				<caption>
-					All Those Waiting
-				</caption>
 
-				<div class="">
-					<a
-						href="/"
-						style="
-							text-align: center;
-							margin-left: 5px;
-							background-color: red;
-							padding: 10px 30px;
-							border-radius: 10px;
-							color: white;
-							text-decoration: none;
-						">
-						Logout
-					</a>
-				</div>
-				<%- include ('./partials/messages') %>
+	<body class="bg-gray-100 text-gray-900">
+		<div class="max-w-5xl mx-auto p-6">
+			<!-- Header -->
+			<div class="flex justify-between items-center mb-6">
+				<h1 class="text-2xl font-bold text-blue-600">All Those Waiting</h1>
+				<a
+					href="/"
+					class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg shadow-md">
+					Logout
+				</a>
+			</div>
 
-				<p style="text-align: center">Total Waitlist: <strong><%= totalUsers %></strong></p>
+			<!-- Flash Messages -->
+			<%- include ('./partials/messages') %>
 
-				<thead>
-					<tr>
-						<th scope="col">Full Name</th>
-						<th scope="col">Email</th>
+			<!-- Total Users -->
+			<p class="text-center text-lg font-semibold text-gray-700 mb-4">
+				Total Waitlist: <strong class="text-blue-600"><%= totalUsers %></strong>
+			</p>
 
-						<!-- <th scope="col">DELETE</th> -->
-					</tr>
-				</thead>
-				<tbody>
-					<% waitlist.forEach(function(waitlist){ %>
-					<tr>
-						<td><%= waitlist.name %></td>
-						<td><%= waitlist.email %></td>
-
-						<!-- <td>
-							<a
-								href="/delete-cryptouser/<%= waitlist._id %>"
-								style="
-									background-color: red;
-									color: white;
-									font-size: 20px;
-									border-radius: 5px;
-									padding: 5px 10px;
-								"
-								>Delete</a
-							>
-						</td> -->
-					</tr>
-					<% }); %>
-				</tbody>
-			</table>
+			<!-- Table -->
+			<div class="overflow-x-auto bg-white shadow-md rounded-lg">
+				<table class="min-w-full border border-gray-200 divide-y divide-gray-300">
+					<thead class="bg-blue-600 text-white uppercase text-sm tracking-wider">
+						<tr>
+							<th class="py-3 px-6 text-left">Full Name</th>
+							<th class="py-3 px-6 text-left">Email</th>
+						</tr>
+					</thead>
+					<tbody class="divide-y divide-gray-200">
+						<% waitlist.forEach(function(waitlist){ %>
+						<tr class="hover:bg-gray-100">
+							<td class="py-4 px-6"><%= waitlist.name %></td>
+							<td class="py-4 px-6"><%= waitlist.email %></td>
+						</tr>
+						<% }); %>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</body>
 </html>
